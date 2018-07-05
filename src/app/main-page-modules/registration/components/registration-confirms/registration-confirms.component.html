@@ -1,0 +1,24 @@
+<div class="content">
+
+  Туту будут конфирмы с которыми вы соглашаетесь.<br>
+  Какие именно - еще не понятно.
+
+  <hr />
+
+  <div class="bottom-menu">
+    <button 
+        type="button" 
+        class="btn btn-default"
+        (click)="prevStep()">
+      Назад
+    </button>
+    <button 
+        type="button" 
+        class="btn btn-default"
+        [disabled]="!registrationModel.isValid()"
+        (click)="finish()">
+      Закончить регистрацию
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+<p-dialog
+        header='Войти'
+        [visible]="visible" 
+        (onHide)="hide()"
+        [draggable]="false"
+        [modal]="true" 
+        width="500">
+
+    <form class="row">
+
+        <div class="col-xs-12 form-group login-form-group">
+            <label class="col-xs-3 col-form-label" for="email">Логин:</label>
+            <div class="col-xs-9">
+                <input type="email" class="form-control" id="email">
+            </div>
+        </div>    
+
+        <div class="col-xs-12 form-group login-form-group">
+            <label class="col-xs-3 col-form-label" for="password">Пароль:</label>
+            <div class="col-xs-9">
+                <input type="password" class="form-control" id="password">
+            </div>
+        </div>
+
+        <div class="col-xs-12 form-group login-form-group">
+            <div class="col-xs-offset-3 col-xs-9">
+                <p-checkbox 
+                    name="saveMe" 
+                    [(ngModel)]="saveMe" 
+                    binary="true">
+                </p-checkbox> 
+                Запомнить меня
+            </div>
+        </div>
+
+    </form>
+
+    <p-footer>
+        <div class="row align-items-center">
+            <div class="col-xs-3">
+                <button 
+                    type="button" 
+                    pButton 
+                    icon="fa-check" 
+                    (click)="login()" 
+                    label="Войти">
+                </button>
+            </div>
+            <div class="footer-text-group col-xs-offset-3 col-xs-6">
+                <span class="footer-element footer-text-link">Забыли пароль?</span>
+                <i class="footer-element clickable material-icons">help_outline</i>
+            </div>
+        </div>
+    </p-footer>
+
+</p-dialog>

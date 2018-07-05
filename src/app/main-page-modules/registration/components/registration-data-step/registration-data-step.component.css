@@ -1,0 +1,7 @@
+.bottom-menu {
+    text-align: right;
+}
+
+.has-error {
+    border: solid 1px #8B0000;
+}

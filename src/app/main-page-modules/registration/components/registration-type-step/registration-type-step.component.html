@@ -1,0 +1,22 @@
+<div class="content">
+  
+  <div class="select-button-row">
+    <p-selectButton 
+      [options]="typesOfRegistration" 
+      [(ngModel)]="registrationModel.typeOfReg">
+    </p-selectButton>
+  </div>
+  
+  {{getAboutTypeOfReg()}}
+
+  <hr />
+
+  <div class="bottom-menu">
+    <button 
+        type="button" 
+        class="btn btn-default"
+        (click)="nextStep()">
+      Дальше
+    </button>
+  </div>
+</div>

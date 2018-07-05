@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default navbar-fixed-top"> 
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" routerLink="/home">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['/home/about']">О сервисе</a></li>
+        <li><a [routerLink]="['/home/integration']">Интеграция с соцсетями</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]="['/home/registration']">Зарегистрироваться</a></li>
+        <li><a class="clickable" (click)="login()">Войти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

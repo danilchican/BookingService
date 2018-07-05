@@ -1,0 +1,40 @@
+<div class="reg-title">
+  Зарегистрироваться
+</div>
+
+<div class="row steps-row">
+  <div class="col-xs-offset-2 col-xs-8">
+    <app-registration-steps
+        [(activeIndex)]="activeIndex"
+        [registrationModel]="registrationModel">
+    </app-registration-steps>
+  </div>
+</div>
+
+<div class="row select-type-row">
+  <div 
+      [ngSwitch]="activeIndex"
+      class="col-xs-offset-2 col-xs-8">
+    
+    <app-registration-type-step
+        *ngSwitchCase="0"
+        [registrationModel]="registrationModel"
+        (nextStepEvent)="toStep(1)">
+    </app-registration-type-step>
+
+    <app-registration-data-step
+        *ngSwitchCase="1"
+        [registrationModel]="registrationModel"
+        (nextStepEvent)="toStep(2)"
+        (prevStepEvent)="toStep(0)">
+    </app-registration-data-step>
+
+    <app-registration-confirms
+        *ngSwitchCase="2"
+        [registrationModel]="registrationModel"
+        (finishEvent)="registrate()"
+        (prevStepEvent)="toStep(1)">
+    </app-registration-confirms>
+
+  </div>
+</div>
