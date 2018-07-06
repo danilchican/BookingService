@@ -1,0 +1,36 @@
+.login-header {
+    text-align: center;
+}
+
+.form-group .login-form-group {
+    margin-top: 20px; 
+}
+
+.col-form-label {
+    padding-top: 6px;
+    font-size: 18px;
+}
+
+::ng-deep .ui-widget-header {
+    text-align: center;
+}
+
+.footer-text-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-text-group > .footer-element {
+    margin: auto 0;
+    font-size: 16px;
+}
+
+.footer-text-group > .footer-text-link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.material-icons {
+    margin: auto 0;
+}

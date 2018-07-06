@@ -1,0 +1,122 @@
+<div class="content">
+
+  <div class="form-group row">
+    <label class="col-xs-3">Email*</label>
+    <div class="col-xs-9">
+      <input 
+          class="form-control" 
+          type="email"
+          [ngClass]="{'has-error': !registrationModel.email}"
+          [(ngModel)]="registrationModel.email" />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-3">Пароль*</label>
+    <div class="col-xs-9">
+      <input 
+          class="form-control" 
+          type="password"
+          [ngClass]="{'has-error': !registrationModel.password}"
+          [(ngModel)]="registrationModel.password" />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-3">Повторите пароль*</label>
+    <div class="col-xs-9">
+      <input 
+          class="form-control" 
+          type="password"
+          [ngClass]="{'has-error': !registrationModel.confirmation || !registrationModel.isValidConfirmation()}"
+          [(ngModel)]="registrationModel.confirmation" />
+    </div>
+  </div>
+    
+  <ng-container *ngIf="registrationModel?.typeOfReg === TypeOfRegEnum.Client; else companyTypeRegTemplate">
+
+    <div class="form-group row">
+      <label class="col-xs-3">Имя</label>
+      <div class="col-xs-9">
+        <input 
+            class="form-control" 
+            type="text"
+            [(ngModel)]="registrationModel.name" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3">Телефон</label>
+      <div class="col-xs-9">
+        <input 
+            class="form-control" 
+            type="tel"
+            [(ngModel)]="registrationModel.phone" />
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-template #companyTypeRegTemplate>
+
+    <div class="form-group row">
+      <label class="col-xs-3">Имя компании</label>
+      <div class="col-xs-9">
+        <input 
+            class="form-control" 
+            type="text"
+            [(ngModel)]="registrationModel.companyName" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3">Телефон</label>
+      <div class="col-xs-9">
+        <input 
+            class="form-control" 
+            type="tel"
+            [(ngModel)]="registrationModel.companyPhone" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3">ИНН</label>
+      <div class="col-xs-9">
+        <input 
+            class="form-control" 
+            type="tel"
+            [(ngModel)]="registrationModel.unp" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-xs-3">Адрес</label>
+      <div class="col-xs-9">
+        <input 
+            class="form-control" 
+            type="tel"
+            [(ngModel)]="registrationModel.address" />
+      </div>
+    </div>
+
+  </ng-template>
+
+  <hr />
+
+  <div class="bottom-menu">
+    <button 
+        type="button" 
+        class="btn btn-default"
+        (click)="prevStep()">
+      Назад
+    </button>
+    <button 
+        type="button" 
+        class="btn btn-default"
+        [disabled]="!regStepValidator.canGoToThirdStep()"
+        (click)="nextStep()">
+      Дальше
+    </button>
+  </div>
+
+</div>
