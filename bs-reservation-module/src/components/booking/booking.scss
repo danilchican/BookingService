@@ -1,0 +1,19 @@
+@import "../../vars.scss";
+
+.booking {
+  position: relative;
+  padding: rem(16) rem(18) rem(8);
+  border: 2px solid $dark-gray;
+  border-radius: rem(4);
+  margin-top: rem(100);
+  background-color: $gray;
+  box-shadow: 0 rem(4) rem(10) 0 rgba(0, 47, 160, 0.4);
+
+  &__title {
+    margin-bottom: rem(20);
+  }
+
+  &__content {
+    min-height: rem(332);
+  }
+}
