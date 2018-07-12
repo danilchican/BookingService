@@ -16,6 +16,10 @@ const routes: Routes = [
         path: 'registration',
         loadChildren: 'app/main-page-modules/registration/registration.module#RegistrationModule'
       },
+      {
+        path: 'admin',
+        loadChildren: 'app/admin/admin-page/admin-page.module#AdminPageModule'
+      },
       { path: '**', redirectTo: 'about', pathMatch: 'full' }
     ]
   }
