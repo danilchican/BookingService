@@ -28,5 +28,7 @@
   </ng-template>
 </p-table>
 
-<ng-container *ngIf="createDialogDisplay">
-</ng-container>
+<app-create-user
+  *ngIf="createDialogDisplay"
+  (closeEvent)="closeCreateDialog()">
+</app-create-user>

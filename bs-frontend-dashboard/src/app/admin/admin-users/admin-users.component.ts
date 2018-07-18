@@ -42,6 +42,10 @@ export class AdminUsersComponent implements OnInit {
   }
 
   public showCreateDialog(): void {
+    this.createDialogDisplay = true;
+  }
 
+  public closeCreateDialog(): void {
+    this.createDialogDisplay = false;
   }
 }
