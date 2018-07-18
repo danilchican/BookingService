@@ -1,6 +1,7 @@
 <div class="button-menu">
   <button class="btn btn-primary" (click)="showCreateDialog()">Создать</button>
   <button class="btn btn-default" (click)="showEditDialog()" [disabled]="!selected">Редактировать</button>
+  <button class="btn btn-default" [disabled]="!selected">Удалить</button>
 </div>
 
 <p-table
