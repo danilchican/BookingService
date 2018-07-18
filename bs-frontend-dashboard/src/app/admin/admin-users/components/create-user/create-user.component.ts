@@ -11,6 +11,8 @@ export class CreateUserComponent implements OnInit {
 
   @Output() public closeEvent: EventEmitter<{}> = new EventEmitter<{}>();
 
+  @Output() public saveEvent: EventEmitter<{}> = new EventEmitter<{}>();
+
   public formGroup: FormGroup;
 
   constructor(
@@ -18,12 +20,13 @@ export class CreateUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.buildForm();
+    this.buildForm(User.empty());
   }
 
-  private buildForm(): void {
+  protected buildForm(user: User): void {
     this.formGroup = this.formBuilder.group({
-      'email': ['', [Validators.required, Validators.email]]
+      id: user.id,
+      email: [user.email, [Validators.required, Validators.email]]
     });
   }
 
@@ -32,6 +35,9 @@ export class CreateUserComponent implements OnInit {
   }
 
   public save(): void {
-
+    this.saveEvent.emit(new User(
+      this.formGroup.get('id').value,
+      this.formGroup.get('email').value
+    ));
   }
 }

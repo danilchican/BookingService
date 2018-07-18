@@ -1,0 +1,29 @@
+<p-dialog
+  header="Редактирование пользователя"
+  [visible]="true"
+  (onHide)="close()"
+  [width]="600"
+  [modal]="true"
+  [draggable]="false">
+
+  <form class="col-xs-12 dialog-content" [formGroup]="formGroup">
+    <div class="form-group row">
+      <span class="ui-float-label">
+        <input id="float-input" type="text" size="30" pInputText formControlName="email">
+        <label for="float-input">Введите email</label>
+      </span>
+    </div>
+  </form>
+
+  <p-footer>
+    <div class="footer-content">
+      <button type="button" class="btn btn-primary" (click)="save()" [disabled]="!formGroup.valid">
+        Сохранить
+      </button>
+      <button type="button" class="btn btn-default" (click)="close()">
+        Отмена
+      </button>
+    </div>
+  </p-footer>
+
+</p-dialog>

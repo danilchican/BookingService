@@ -11,6 +11,7 @@ import {AdminUsersService} from "./services/admin-users.service";
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import {ButtonModule, InputTextModule} from "primeng/primeng";
 import {ProjectSharedModule} from "../../shared/shared.module";
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {ProjectSharedModule} from "../../shared/shared.module";
   ],
   declarations: [
     AdminUsersComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    EditUserComponent
   ],
   providers: [
     AdminUsersService

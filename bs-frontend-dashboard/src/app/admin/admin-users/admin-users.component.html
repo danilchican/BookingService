@@ -35,3 +35,9 @@
   *ngIf="createDialogDisplay"
   (closeEvent)="closeCreateDialog()">
 </app-create-user>
+
+<app-edit-user
+  *ngIf="editDialogDisplay"
+  [user]="selected"
+  (closeEvent)="closeEditDialog()">
+</app-edit-user>

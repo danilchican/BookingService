@@ -18,6 +18,8 @@ export class AdminUsersComponent implements OnInit {
 
   public createDialogDisplay = false;
 
+  public editDialogDisplay = false;
+
   constructor(
     private adminUsersService: AdminUsersService
   ) {
@@ -46,6 +48,10 @@ export class AdminUsersComponent implements OnInit {
   }
 
   public showEditDialog(): void {
+    this.editDialogDisplay = true;
+  }
 
+  public closeEditDialog(): void {
+    this.editDialogDisplay = false;
   }
 }
