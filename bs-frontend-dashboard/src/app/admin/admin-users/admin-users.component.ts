@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LazyLoadEvent} from "primeng/api";
+import {AdminUsersService} from "./services/admin-users.service";
+import {User} from "../../core/users/models/user";
 
 @Component({
   selector: 'app-admin-users',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor() { }
+  public users: User[] = [];
 
-  ngOnInit() {
+  public isPending = false;
+
+  public selected: User;
+
+  constructor(
+    private adminUsersService: AdminUsersService
+  ) {
   }
 
+  ngOnInit() {
+    this.load();
+  }
+
+  public load(): void {
+    this.isPending = true;
+    this.adminUsersService.loadUsers()
+      .take(1)
+      .subscribe((users: User[]) => {
+        this.users = users;
+        this.isPending = false;
+      });
+  }
+
+  public changeSelected(selected: User): void {
+    this.selected = selected;
+  }
 }
