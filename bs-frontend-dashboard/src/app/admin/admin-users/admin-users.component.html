@@ -1,10 +1,13 @@
 <div class="button-menu">
   <button class="btn btn-primary" (click)="showCreateDialog()">Создать</button>
+  <button class="btn btn-default" (click)="showEditDialog()" [disabled]="!selected">Редактировать</button>
 </div>
 
 <p-table
   [value]="users"
-  [selectionMode]="'single'"
+  selectionMode="single"
+  [(selection)]="selected"
+  dataKey="id"
   [loading]="isPending">
   <ng-template pTemplate="header">
     <tr>
@@ -17,7 +20,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData>
-    <tr>
+    <tr [pSelectableRow]="rowData">
       <td>
         {{rowData.id}}
       </td>

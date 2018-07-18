@@ -37,15 +37,15 @@ export class AdminUsersComponent implements OnInit {
       });
   }
 
-  public changeSelected(selected: User): void {
-    this.selected = selected;
-  }
-
   public showCreateDialog(): void {
     this.createDialogDisplay = true;
   }
 
   public closeCreateDialog(): void {
     this.createDialogDisplay = false;
+  }
+
+  public showEditDialog(): void {
+
   }
 }
