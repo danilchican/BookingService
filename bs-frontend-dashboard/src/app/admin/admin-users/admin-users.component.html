@@ -1,3 +1,7 @@
+<div class="button-menu">
+  <button class="btn btn-primary" (click)="showCreateDialog()">Создать</button>
+</div>
+
 <p-table
   [value]="users"
   [selectionMode]="'single'"
@@ -23,3 +27,6 @@
     </tr>
   </ng-template>
 </p-table>
+
+<ng-container *ngIf="createDialogDisplay">
+</ng-container>

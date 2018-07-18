@@ -16,6 +16,8 @@ export class AdminUsersComponent implements OnInit {
 
   public selected: User;
 
+  public createDialogDisplay = false;
+
   constructor(
     private adminUsersService: AdminUsersService
   ) {
@@ -37,5 +39,9 @@ export class AdminUsersComponent implements OnInit {
 
   public changeSelected(selected: User): void {
     this.selected = selected;
+  }
+
+  public showCreateDialog(): void {
+
   }
 }
