@@ -19,7 +19,15 @@ export class AdminUsersService {
       .map((users: UserDto[]) => users.map(dto => User.fromDTO(dto)));
   }
 
-  public saveUser(user: User): Observable<User[]> {
+  public createUser(user: User): Observable<User[]> {
+    return this.loadUsers();
+  }
+
+  public editUser(user: User): Observable<User[]> {
+    return this.loadUsers();
+  }
+
+  public deleteUser(user: User): Observable<User[]> {
     return this.loadUsers();
   }
 }

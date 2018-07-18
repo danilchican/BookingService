@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LazyLoadEvent} from "primeng/api";
+
 import {AdminUsersService} from "./services/admin-users.service";
 import {User} from "../../core/users/models/user";
 
@@ -32,7 +32,6 @@ export class AdminUsersComponent implements OnInit {
   public load(): void {
     this.isPending = true;
     this.adminUsersService.loadUsers()
-      .take(1)
       .subscribe((users: User[]) => {
         this.users = users;
         this.isPending = false;
@@ -43,15 +42,40 @@ export class AdminUsersComponent implements OnInit {
     this.createDialogDisplay = true;
   }
 
-  public closeCreateDialog(): void {
-    this.createDialogDisplay = false;
-  }
-
   public showEditDialog(): void {
     this.editDialogDisplay = true;
   }
 
-  public closeEditDialog(): void {
+  public closeDialogs(): void {
     this.editDialogDisplay = false;
+    this.createDialogDisplay = false;
+  }
+
+  public createUser(user: User): void {
+    this.isPending = true;
+    this.adminUsersService.createUser(user)
+      .subscribe((users: User[]) => {
+        this.users = users;
+        this.isPending = false;
+        this.closeDialogs();
+      });
+  }
+  public editUser(user: User): void {
+    this.isPending = true;
+    this.adminUsersService.editUser(user)
+      .subscribe((users: User[]) => {
+        this.users = users;
+        this.isPending = false;
+        this.closeDialogs();
+      });
+  }
+
+  public deleteUser(): void {
+    this.isPending = true;
+    this.adminUsersService.deleteUser(this.selected)
+      .subscribe((users: User[]) => {
+        this.users = users;
+        this.isPending = false;
+      });
   }
 }

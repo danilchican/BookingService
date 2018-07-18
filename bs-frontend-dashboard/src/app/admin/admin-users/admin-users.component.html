@@ -1,7 +1,7 @@
 <div class="button-menu">
   <button class="btn btn-primary" (click)="showCreateDialog()">Создать</button>
   <button class="btn btn-default" (click)="showEditDialog()" [disabled]="!selected">Редактировать</button>
-  <button class="btn btn-default" [disabled]="!selected">Удалить</button>
+  <button class="btn btn-default" (click)="deleteUser()" [disabled]="!selected">Удалить</button>
 </div>
 
 <p-table
@@ -34,11 +34,13 @@
 
 <app-create-user
   *ngIf="createDialogDisplay"
-  (closeEvent)="closeCreateDialog()">
+  (closeEvent)="closeDialogs()"
+  (saveEvent)="createUser($event)">
 </app-create-user>
 
 <app-edit-user
   *ngIf="editDialogDisplay"
   [user]="selected"
-  (closeEvent)="closeEditDialog()">
+  (closeEvent)="closeDialogs()"
+  (saveEvent)="editUser($event)">
 </app-edit-user>
