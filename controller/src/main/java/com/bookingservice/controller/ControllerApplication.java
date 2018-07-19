@@ -1,7 +1,7 @@
 package com.bookingservice.controller;
 
-import com.bookingservice.model.User;
-import com.bookingservice.service.UserService;
+import com.bookingservice.model.dto.ClientReqDto;
+import com.bookingservice.service.impl.ClientService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -23,11 +23,16 @@ public class ControllerApplication {
     }
 
     @Bean
-    public CommandLineRunner loadData(UserService userService) {
+    public CommandLineRunner loadData(ClientService clientService) {
         return (args) -> {
-            userService.addUser(new User("bogdevich96@gmail.com"));
-            userService.addUser(new User("bogdevich96@gmail.com"));
-            userService.addUser(new User("bogdevich96@gmail.com"));
+            clientService.create(
+                    new ClientReqDto(
+                            "bogdevich96@gmail.com",
+                            "292838788",
+                            "Eugene",
+                            "Bogdevich"));/*
+            clientService.create(new Client("bogdevich96@gmail.com"));
+            clientService.create(new Client("bogdevich96@gmail.com"));*/
         };
     }
 }
