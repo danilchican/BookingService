@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InfoBox from "../infobox";
 import Calendar from "../calendar";
 import Times from "../times";
 import Specialists from "../specialists";
@@ -16,147 +17,147 @@ class Booking extends Component {
           id: '0',
           name: 'Абрамов Владлен Романович',
           description: 'Стоматолог',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '08:00-09:00'
         },
         {
           id: '1',
           name: 'Белозёров Илларион Борисович',
           description: 'Терапевт',
-          date: '18.05.2018',
+          date: '18.08.2018',
           time: '10:00-11:00'
         },
         {
           id: '3',
           name: 'Мишин Давид Сергеевич',
           description: 'Педиатр',
-          date: '10.05.2018',
+          date: '10.08.2018',
           time: '12:00-13:00'
         },
         {
           id: '4',
           name: 'Рябов Игорь Львович',
           description: 'Рентгенолог',
-          date: '16.05.2018',
+          date: '16.08.2018',
           time: '9:00-10:00'
         },
         {
           id: '5',
           name: 'Якушев Александр Максимович',
           description: 'Психиатр',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '14:00-15:00'
         },
         {
           id: '6',
           name: 'Хохлов Леон Дмитриевич',
           description: 'Врач функциональной диагностики',
-          date: '13.05.2018',
+          date: '13.08.2018',
           time: '11:00-12:00'
         },
         {
           id: '7',
           name: 'Овчинников Александр Евгеньевич',
           description: 'Офтальмолог',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '12:00-13:00'
         },
         {
           id: '8',
           name: 'Абрамов Владлен Романович',
           description: 'Стоматолог',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '10:00-11:00'
         },
         {
           id: '9',
           name: 'Белозёров Илларион Борисович',
           description: 'Терапевт',
-          date: '18.05.2018',
+          date: '18.08.2018',
           time: '15:00-16:00'
         },
         {
           id: '10',
           name: 'Мишин Давид Сергеевич',
           description: 'Педиатр',
-          date: '10.05.2018',
+          date: '10.08.2018',
           time: '16:00-17:00'
         },
         {
           id: '10',
           name: 'Рябов Игорь Львович',
           description: 'Рентгенолог',
-          date: '16.05.2018',
+          date: '16.08.2018',
           time: '18:00-19:00'
         },
         {
           id: '11',
           name: 'Якушев Александр Максимович',
           description: 'Психиатр',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '19:00-20:00'
         },
         {
           id: '12',
           name: 'Хохлов Леон Дмитриевич',
           description: 'Врач функциональной диагностики',
-          date: '13.05.2018',
+          date: '13.08.2018',
           time: '16:00-17:00'
         },
         {
           id: '13',
           name: 'Овчинников Александр Евгеньевич',
           description: 'Офтальмолог',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '13:00-14:00'
         },
         {
           id: '14',
           name: 'Абрамов Владлен Романович',
           description: 'Стоматолог',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '13:00-14:00'
         },
         {
           id: '9',
           name: 'Белозёров Илларион Борисович',
           description: 'Терапевт',
-          date: '18.05.2018',
+          date: '18.08.2018',
           time: '18:00-19:00'
         },
         {
           id: '10',
           name: 'Мишин Давид Сергеевич',
           description: 'Педиатр',
-          date: '10.05.2018',
+          date: '10.08.2018',
           time: '17:00-18:00'
         },
         {
           id: '10',
           name: 'Рябов Игорь Львович',
           description: 'Рентгенолог',
-          date: '16.05.2018',
+          date: '16.08.2018',
           time: '19:00-20:00'
         },
         {
           id: '11',
           name: 'Якушев Александр Максимович',
           description: 'Психиатр',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '21:00-22:00'
         },
         {
           id: '12',
           name: 'Хохлов Леон Дмитриевич',
           description: 'Врач функциональной диагностики',
-          date: '13.05.2018',
+          date: '13.08.2018',
           time: '18:00-19:00'
         },
         {
           id: '13',
           name: 'Овчинников Александр Евгеньевич',
           description: 'Офтальмолог',
-          date: '12.05.2018',
+          date: '12.08.2018',
           time: '15:00-16:00'
         },
       ],
@@ -281,8 +282,21 @@ class Booking extends Component {
           dateFlag = this.state.dateFlag,
           timeFlag = this.state.timeFlag,
           nameFlag = this.state.nameFlag,
-          allFlag = this.state.allFlag;
-
+          allFlag = this.state.allFlag,
+          dataInfo = [
+            {
+              name: 'Дата',
+              info: this.state.resDate,
+            },
+            {
+              name: 'Время',
+              info: this.state.resTime,
+            },
+            {
+              name: 'Имя',
+              info: this.state.resName,
+            },
+          ];
     return (
       <div className='booking'>
         <div className='booking__content'>
@@ -293,6 +307,7 @@ class Booking extends Component {
             { (dateFlag) && (timeFlag) && (nameFlag) && (!allFlag) && title[3] }
           </div>
 
+          { <InfoBox data={dataInfo} allFlag={allFlag} /> }
           { (!dateFlag) && <Calendar changeDay={this.changeDay} data={data} />}
           { (dateFlag) && (!timeFlag) && <Times minTime={8} maxTime={22} changeTime={this.changeTime} data={iData} />}
           { (dateFlag) && (timeFlag) && (!nameFlag) && <Specialists changeName={this.changeName} data={iData} />}
@@ -304,7 +319,7 @@ class Booking extends Component {
               resBid={this.resBid}
               />
           }
-          { (allFlag) && <Success />}
+          { (allFlag) && <Success data={dataInfo} />}
         </div>
 
         { (!dateFlag) && <Status percent={0} /> }

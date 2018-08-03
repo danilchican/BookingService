@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './common.scss';
+import './base/styles/common.scss';
 import Booking from './components/booking';
 
 class App extends Component {
