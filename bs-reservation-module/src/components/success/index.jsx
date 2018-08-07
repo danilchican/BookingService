@@ -13,16 +13,18 @@ class Success extends Component {
     });
 
     return(
-      <div className='success'>
-        <div className='success__head'>
-          <div className='success__title h1'>Спасибо</div>
-          <div className='success__s-title h2'>Ваша заявка отправлена</div>
-          <div className='success__t-title h3'>Вам придет смс</div>
-        </div>
+      <div className='booking__content'>
+        <div className='success'>
+          <div className='success__head'>
+            <div className='success__title h1'>Спасибо</div>
+            <div className='success__s-title h2'>Ваша заявка отправлена</div>
+            <div className='success__t-title h3'>Вам придет смс</div>
+          </div>
 
-        <div className='success__info'>
-          <div className='success__info-title h3'>Ваша заявка:</div>
-          {info}
+          <div className='success__info'>
+            <div className='success__info-title h3'>Ваша заявка:</div>
+            {info}
+          </div>
         </div>
       </div>
     )

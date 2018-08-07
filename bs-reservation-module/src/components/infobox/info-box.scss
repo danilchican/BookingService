@@ -2,9 +2,10 @@
 
 .info-box {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: rem(16);
+  right: rem(18);
   display: block;
+  z-index: 1;
 
   &--disabled {
     display: none;

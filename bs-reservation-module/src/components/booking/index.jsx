@@ -12,158 +12,6 @@ class Booking extends Component {
   constructor(){
     super();
     this.state = {
-      data: [
-        {
-          id: '0',
-          name: 'Абрамов Владлен Романович',
-          description: 'Стоматолог',
-          date: '12.08.2018',
-          time: '08:00-09:00'
-        },
-        {
-          id: '1',
-          name: 'Белозёров Илларион Борисович',
-          description: 'Терапевт',
-          date: '18.08.2018',
-          time: '10:00-11:00'
-        },
-        {
-          id: '3',
-          name: 'Мишин Давид Сергеевич',
-          description: 'Педиатр',
-          date: '10.08.2018',
-          time: '12:00-13:00'
-        },
-        {
-          id: '4',
-          name: 'Рябов Игорь Львович',
-          description: 'Рентгенолог',
-          date: '16.08.2018',
-          time: '9:00-10:00'
-        },
-        {
-          id: '5',
-          name: 'Якушев Александр Максимович',
-          description: 'Психиатр',
-          date: '12.08.2018',
-          time: '14:00-15:00'
-        },
-        {
-          id: '6',
-          name: 'Хохлов Леон Дмитриевич',
-          description: 'Врач функциональной диагностики',
-          date: '13.08.2018',
-          time: '11:00-12:00'
-        },
-        {
-          id: '7',
-          name: 'Овчинников Александр Евгеньевич',
-          description: 'Офтальмолог',
-          date: '12.08.2018',
-          time: '12:00-13:00'
-        },
-        {
-          id: '8',
-          name: 'Абрамов Владлен Романович',
-          description: 'Стоматолог',
-          date: '12.08.2018',
-          time: '10:00-11:00'
-        },
-        {
-          id: '9',
-          name: 'Белозёров Илларион Борисович',
-          description: 'Терапевт',
-          date: '18.08.2018',
-          time: '15:00-16:00'
-        },
-        {
-          id: '10',
-          name: 'Мишин Давид Сергеевич',
-          description: 'Педиатр',
-          date: '10.08.2018',
-          time: '16:00-17:00'
-        },
-        {
-          id: '10',
-          name: 'Рябов Игорь Львович',
-          description: 'Рентгенолог',
-          date: '16.08.2018',
-          time: '18:00-19:00'
-        },
-        {
-          id: '11',
-          name: 'Якушев Александр Максимович',
-          description: 'Психиатр',
-          date: '12.08.2018',
-          time: '19:00-20:00'
-        },
-        {
-          id: '12',
-          name: 'Хохлов Леон Дмитриевич',
-          description: 'Врач функциональной диагностики',
-          date: '13.08.2018',
-          time: '16:00-17:00'
-        },
-        {
-          id: '13',
-          name: 'Овчинников Александр Евгеньевич',
-          description: 'Офтальмолог',
-          date: '12.08.2018',
-          time: '13:00-14:00'
-        },
-        {
-          id: '14',
-          name: 'Абрамов Владлен Романович',
-          description: 'Стоматолог',
-          date: '12.08.2018',
-          time: '13:00-14:00'
-        },
-        {
-          id: '9',
-          name: 'Белозёров Илларион Борисович',
-          description: 'Терапевт',
-          date: '18.08.2018',
-          time: '18:00-19:00'
-        },
-        {
-          id: '10',
-          name: 'Мишин Давид Сергеевич',
-          description: 'Педиатр',
-          date: '10.08.2018',
-          time: '17:00-18:00'
-        },
-        {
-          id: '10',
-          name: 'Рябов Игорь Львович',
-          description: 'Рентгенолог',
-          date: '16.08.2018',
-          time: '19:00-20:00'
-        },
-        {
-          id: '11',
-          name: 'Якушев Александр Максимович',
-          description: 'Психиатр',
-          date: '12.08.2018',
-          time: '21:00-22:00'
-        },
-        {
-          id: '12',
-          name: 'Хохлов Леон Дмитриевич',
-          description: 'Врач функциональной диагностики',
-          date: '13.08.2018',
-          time: '18:00-19:00'
-        },
-        {
-          id: '13',
-          name: 'Овчинников Александр Евгеньевич',
-          description: 'Офтальмолог',
-          date: '12.08.2018',
-          time: '15:00-16:00'
-        },
-      ],
-      iData: [],
-      pData: [],
-      title: 'Выберите день,Выберите время,Выберите специалиста,Заполните форму'.split(','),
       resDate: '',
       resTime: '',
       resName: '',
@@ -178,8 +26,6 @@ class Booking extends Component {
       resUserPhone: '',
       resUserText: '',
     }
-    this.searchDate = this.searchDate.bind(this);
-    this.searchTime = this.searchTime.bind(this);
     this.changeDay = this.changeDay.bind(this);
     this.changeTime = this.changeTime.bind(this);
     this.changeName = this.changeName.bind(this);
@@ -218,22 +64,6 @@ class Booking extends Component {
     event.preventDefault();
     this.setState({resUserText: event.target.value});
   }
-  searchDate(search) {
-    const values = [];
-    this.state.data.forEach((item, i) => {
-      (item.date === search) && values.push(item);
-    });
-
-    return values;
-  }
-  searchTime(search) {
-    const values = [];
-    this.state.iData.forEach((item, i) => {
-      (item.time === search) && values.push(item);
-    });
-
-    return values;
-  }
   resBid(event) {
     this.setState({
       allFlag: true,
@@ -253,7 +83,6 @@ class Booking extends Component {
   changeDay(date) {
     console.log(date);
     this.setState({
-      iData: this.searchDate(date),
       resDate: date,
       dateFlag: true,
     });
@@ -263,7 +92,6 @@ class Booking extends Component {
     // const time = timeFrom + '-' + timeTo;
     console.log(time);
     this.setState({
-      iData: this.searchTime(time),
       resTime: time,
       timeFlag: true,
     });
@@ -276,10 +104,7 @@ class Booking extends Component {
     });
   }
   render() {
-    const data = this.state.data,
-          iData = this.state.iData,
-          title = this.state.title,
-          dateFlag = this.state.dateFlag,
+    const dateFlag = this.state.dateFlag,
           timeFlag = this.state.timeFlag,
           nameFlag = this.state.nameFlag,
           allFlag = this.state.allFlag,
@@ -299,28 +124,19 @@ class Booking extends Component {
           ];
     return (
       <div className='booking'>
-        <div className='booking__content'>
-          <div className='booking__title h2'>
-            { (!dateFlag) && title[0] }
-            { (dateFlag) && (!timeFlag) && title[1] }
-            { (dateFlag) && (timeFlag) && (!nameFlag) && title[2] }
-            { (dateFlag) && (timeFlag) && (nameFlag) && (!allFlag) && title[3] }
-          </div>
-
-          { <InfoBox data={dataInfo} allFlag={allFlag} /> }
-          { (!dateFlag) && <Calendar changeDay={this.changeDay} data={data} />}
-          { (dateFlag) && (!timeFlag) && <Times minTime={8} maxTime={22} changeTime={this.changeTime} data={iData} />}
-          { (dateFlag) && (timeFlag) && (!nameFlag) && <Specialists changeName={this.changeName} data={iData} />}
-          { (dateFlag) && (timeFlag) && (nameFlag) && (!allFlag) &&
-            <Form
-              changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}
-              changeUserEmail={this.changeUserEmail} changeUserPhone={this.changeUserPhone}
-              changeUserText={this.changeUserText}
-              resBid={this.resBid}
-              />
-          }
-          { (allFlag) && <Success data={dataInfo} />}
-        </div>
+        { <InfoBox data={dataInfo} allFlag={allFlag} /> }
+        { (!dateFlag) && <Calendar changeDay={this.changeDay} />}
+        { (dateFlag) && (!timeFlag) && <Times minTime={8} maxTime={22} changeTime={this.changeTime} />}
+        { (dateFlag) && (timeFlag) && (!nameFlag) && <Specialists changeName={this.changeName} />}
+        { (dateFlag) && (timeFlag) && (nameFlag) && (!allFlag) &&
+          <Form
+            changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}
+            changeUserEmail={this.changeUserEmail} changeUserPhone={this.changeUserPhone}
+            changeUserText={this.changeUserText}
+            resBid={this.resBid}
+            />
+        }
+        { (allFlag) && <Success data={dataInfo} />}
 
         { (!dateFlag) && <Status percent={0} /> }
         { (dateFlag) && (!timeFlag) && <Status percent={25} /> }
