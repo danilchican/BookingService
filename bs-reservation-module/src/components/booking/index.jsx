@@ -9,17 +9,35 @@ import Success from "../success";
 import "./booking.scss";
 
 class Booking extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
+      blocks: [
+        {
+          name: 'calendar',
+          flag: false,
+        },
+        {
+          name: 'times',
+          flag: false,
+        },
+        {
+          name: 'specialists',
+          flag: false,
+        },
+        {
+          name: 'form',
+          flag: false,
+        },
+        {
+          name: 'success',
+          flag: false,
+        },
+      ],
       resDate: '',
       resTime: '',
       resName: '',
       resDescription: '',
-      dateFlag: false,
-      timeFlag: false,
-      nameFlag: false,
-      allFlag: false,
       resUserName: '',
       resUserSurname: '',
       resUserEmail: '',
@@ -29,6 +47,7 @@ class Booking extends Component {
     this.changeDay = this.changeDay.bind(this);
     this.changeTime = this.changeTime.bind(this);
     this.changeName = this.changeName.bind(this);
+    this.returnSelectedBlocks = this.returnSelectedBlocks.bind(this);
     this.changeUserName = this.changeUserName.bind(this);
     this.changeUserSurname = this.changeUserSurname.bind(this);
     this.changeUserEmail = this.changeUserEmail.bind(this);
@@ -65,8 +84,10 @@ class Booking extends Component {
     this.setState({resUserText: event.target.value});
   }
   resBid(event) {
+    const blocks = this.returnSelectedBlocks('form');
+
     this.setState({
-      allFlag: true,
+      blocks: blocks,
     });
 
     console.log('resDate: ', this.state.resDate);
@@ -80,34 +101,49 @@ class Booking extends Component {
     console.log('resUserPhone: ', this.state.resUserPhone);
     console.log('resUserText: ', this.state.resUserText);
   }
+  returnSelectedBlocks(name) {
+    let nBlocks = this.state.blocks;
+    let i = this.state.blocks.length;
+    const block = {
+      name: 'calendar',
+      flag: true,
+    };
+
+    this.state.blocks.forEach((item, index) => {
+      if (item.name === name) i = index;
+    });
+    nBlocks[i] = block;
+
+    return nBlocks;
+  }
   changeDay(date) {
-    console.log(date);
+    const blocks = this.returnSelectedBlocks('calendar');
+
     this.setState({
+      blocks: blocks,
       resDate: date,
-      dateFlag: true,
     });
   }
-  // changeTime(timeFrom, timeTo) {
+
   changeTime(time) {
-    // const time = timeFrom + '-' + timeTo;
-    console.log(time);
+    const blocks = this.returnSelectedBlocks('times');
+
     this.setState({
+      blocks: blocks,
       resTime: time,
-      timeFlag: true,
     });
   }
   changeName(name, description) {
+    const blocks = this.returnSelectedBlocks('specialists');
+
     this.setState({
+      blocks: blocks,
       resName: name,
       resDescription: description,
-      nameFlag: true,
     });
   }
   render() {
-    const dateFlag = this.state.dateFlag,
-          timeFlag = this.state.timeFlag,
-          nameFlag = this.state.nameFlag,
-          allFlag = this.state.allFlag,
+    const blocks = this.state.blocks,
           dataInfo = [
             {
               name: 'Дата',
@@ -122,13 +158,26 @@ class Booking extends Component {
               info: this.state.resName,
             },
           ];
+
+    let allFlag = false;
+
+    let activeBlock = 'success';
+    for(let i = 0; i < blocks.length; i++) {
+      if (blocks[i].flag === false) {
+        activeBlock = blocks[i].name;
+        break;
+      }
+    }
+
+    if (activeBlock === 'success') allFlag = true;
+
     return (
       <div className='booking'>
         { <InfoBox data={dataInfo} allFlag={allFlag} /> }
-        { (!dateFlag) && <Calendar changeDay={this.changeDay} />}
-        { (dateFlag) && (!timeFlag) && <Times minTime={8} maxTime={22} changeTime={this.changeTime} />}
-        { (dateFlag) && (timeFlag) && (!nameFlag) && <Specialists changeName={this.changeName} />}
-        { (dateFlag) && (timeFlag) && (nameFlag) && (!allFlag) &&
+        { (activeBlock === 'calendar') && <Calendar changeDay={this.changeDay} /> }
+        { (activeBlock === 'times') && <Times minTime={8} maxTime={22} changeTime={this.changeTime} /> }
+        { (activeBlock === 'specialists') && <Specialists changeName={this.changeName} /> }
+        { (activeBlock === 'form') &&
           <Form
             changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}
             changeUserEmail={this.changeUserEmail} changeUserPhone={this.changeUserPhone}
@@ -136,13 +185,9 @@ class Booking extends Component {
             resBid={this.resBid}
             />
         }
-        { (allFlag) && <Success data={dataInfo} />}
+        { (activeBlock === 'success') && <Success data={dataInfo} />}
 
-        { (!dateFlag) && <Status percent={0} /> }
-        { (dateFlag) && (!timeFlag) && <Status percent={25} /> }
-        { (dateFlag) && (timeFlag) && (!nameFlag) && <Status percent={50} /> }
-        { (dateFlag) && (timeFlag) && (nameFlag) && (!allFlag) && <Status percent={75} /> }
-        { (allFlag) &&  <Status percent={100} /> }
+        <Status blocks={blocks} />
       </div>
     );
   }

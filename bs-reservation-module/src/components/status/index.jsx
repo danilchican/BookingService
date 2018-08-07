@@ -4,7 +4,14 @@ import "./status.scss";
 
 class Status extends Component {
   render() {
-    const percent = this.props.percent;
+    const blocks = this.props.blocks;
+    let percent = 0,
+        i = 0;
+
+    blocks.forEach((item) => {
+      if (item.flag) i++;
+    });
+    if (i !== 0) percent = (i / (blocks.length - 1)) * 100;
 
     return(
       <div className='status'>
@@ -15,7 +22,7 @@ class Status extends Component {
 };
 
 Status.propTypes = {
-  percent: PropTypes.number
+  blocks: PropTypes.array,
 }
 
 export default Status;
