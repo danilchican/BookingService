@@ -13,8 +13,8 @@ class Item extends Component {
 };
 
 Item.propTypes = {
-  number: PropTypes.string,
-  dataDate: PropTypes.string,
+  name: PropTypes.string,
+  info: PropTypes.string,
 }
 
 export default Item;

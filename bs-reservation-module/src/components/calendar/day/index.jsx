@@ -22,7 +22,7 @@ Day.propTypes = {
   dataDate: PropTypes.string,
   activeDay: PropTypes.bool,
   flagToday: PropTypes.bool,
-  changeDay: PropTypes.func
+  changeDay: PropTypes.func,
 }
 
 export default Day;

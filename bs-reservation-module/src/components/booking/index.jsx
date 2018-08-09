@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Switch from "../switch";
 import InfoBox from "../infobox";
 import Calendar from "../calendar";
 import Times from "../times";
@@ -47,6 +48,7 @@ class Booking extends Component {
     this.changeDay = this.changeDay.bind(this);
     this.changeTime = this.changeTime.bind(this);
     this.changeName = this.changeName.bind(this);
+    this.changeOrders = this.changeOrders.bind(this);
     this.returnSelectedBlocks = this.returnSelectedBlocks.bind(this);
     this.changeUserName = this.changeUserName.bind(this);
     this.changeUserSurname = this.changeUserSurname.bind(this);
@@ -105,7 +107,7 @@ class Booking extends Component {
     let nBlocks = this.state.blocks;
     let i = this.state.blocks.length;
     const block = {
-      name: 'calendar',
+      name: name,
       flag: true,
     };
 
@@ -115,6 +117,28 @@ class Booking extends Component {
     nBlocks[i] = block;
 
     return nBlocks;
+  }
+  changeOrders(name) {
+    let nBlocks = this.state.blocks;
+    let aldI = this.state.blocks.length;
+    let newI = this.state.blocks.length;
+    let flag = false;
+
+    this.state.blocks.forEach((item, index) => {
+      if (item.name === name) aldI = index;
+      if (!item.flag && !flag) {
+        newI = index;
+        flag = true;
+      }
+    });
+    const aldBlock = nBlocks[aldI];
+    const newBlock = nBlocks[newI];
+    nBlocks[aldI] = newBlock;
+    nBlocks[newI] = aldBlock;
+
+    this.setState({
+      blocks: nBlocks,
+    });
   }
   changeDay(date) {
     const blocks = this.returnSelectedBlocks('calendar');
@@ -159,7 +183,8 @@ class Booking extends Component {
             },
           ];
 
-    let allFlag = false;
+    let allRes = false,
+        allEvents = false;
 
     let activeBlock = 'success';
     for(let i = 0; i < blocks.length; i++) {
@@ -169,24 +194,28 @@ class Booking extends Component {
       }
     }
 
-    if (activeBlock === 'success') allFlag = true;
+    if (activeBlock === 'form' || activeBlock === 'success') allEvents = true;
+    if (activeBlock === 'success') allRes = true;
 
     return (
       <div className='booking'>
-        { <InfoBox data={dataInfo} allFlag={allFlag} /> }
-        { (activeBlock === 'calendar') && <Calendar changeDay={this.changeDay} /> }
-        { (activeBlock === 'times') && <Times minTime={8} maxTime={22} changeTime={this.changeTime} /> }
-        { (activeBlock === 'specialists') && <Specialists changeName={this.changeName} /> }
-        { (activeBlock === 'form') &&
-          <Form
-            changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}
-            changeUserEmail={this.changeUserEmail} changeUserPhone={this.changeUserPhone}
-            changeUserText={this.changeUserText}
-            resBid={this.resBid}
-            />
-        }
-        { (activeBlock === 'success') && <Success data={dataInfo} />}
+        { (!allEvents) && <Switch blocks={blocks} changeOrders={this.changeOrders} /> }
+        <div className='booking__content-wrap'>
+          { <InfoBox data={dataInfo} allRes={allRes} /> }
+          { (activeBlock === 'calendar') && <Calendar changeDay={this.changeDay} /> }
+          { (activeBlock === 'times') && <Times minTime={8} maxTime={22} changeTime={this.changeTime} /> }
+          { (activeBlock === 'specialists') && <Specialists changeName={this.changeName} /> }
+          { (activeBlock === 'form') &&
+            <Form
+              changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}
+              changeUserEmail={this.changeUserEmail} changeUserPhone={this.changeUserPhone}
+              changeUserText={this.changeUserText}
+              resBid={this.resBid}
+              />
+          }
+          { (activeBlock === 'success') && <Success data={dataInfo} />}
 
+        </div>
         <Status blocks={blocks} />
       </div>
     );

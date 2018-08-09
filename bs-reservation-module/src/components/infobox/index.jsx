@@ -6,7 +6,7 @@ import "./info-box.scss";
 class InfoBox extends Component {
   render() {
     const data = this.props.data,
-          allFlag = this.props.allFlag;
+          allRes = this.props.allRes;
     let info = [];
 
     data.forEach((item, i) => {
@@ -14,7 +14,7 @@ class InfoBox extends Component {
     });
 
     return(
-      <div className={'info-box' + (((info.length === 0) || allFlag) ? ' info-box--disabled' : '')}>
+      <div className={'info-box' + (((info.length === 0) || allRes) ? ' info-box--disabled' : '')}>
         <a className='info-box__icon text'>
           <span>i</span>
         </a>
@@ -30,7 +30,7 @@ class InfoBox extends Component {
 
 InfoBox.propTypes = {
   data: PropTypes.array,
-  allFlag: PropTypes.bool,
+  allRes: PropTypes.bool,
 }
 
 export default InfoBox;
