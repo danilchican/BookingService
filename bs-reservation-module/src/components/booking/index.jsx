@@ -4,6 +4,7 @@ import InfoBox from "../infobox";
 import Calendar from "../calendar";
 import Times from "../times";
 import Specialists from "../specialists";
+import Back from "./back";
 import Status from "../status";
 import Form from "../form";
 import Success from "../success";
@@ -49,6 +50,7 @@ class Booking extends Component {
     this.changeTime = this.changeTime.bind(this);
     this.changeName = this.changeName.bind(this);
     this.changeOrders = this.changeOrders.bind(this);
+    this.changeBack = this.changeBack.bind(this);
     this.returnSelectedBlocks = this.returnSelectedBlocks.bind(this);
     this.changeUserName = this.changeUserName.bind(this);
     this.changeUserSurname = this.changeUserSurname.bind(this);
@@ -102,6 +104,23 @@ class Booking extends Component {
     console.log('resUserEmail: ', this.state.resUserEmail);
     console.log('resUserPhone: ', this.state.resUserPhone);
     console.log('resUserText: ', this.state.resUserText);
+  }
+  changeBack() {
+    let nBlocks = this.state.blocks;
+    let i = this.state.blocks.length;
+    let flag = false;
+
+    this.state.blocks.forEach((item, index) => {
+      if (!item.flag && !flag) {
+        i = index;
+        flag = true;
+      }
+    });
+    nBlocks[i - 1].flag = false;
+
+    this.setState({
+      blocks: nBlocks,
+    });
   }
   returnSelectedBlocks(name) {
     let nBlocks = this.state.blocks;
@@ -184,12 +203,14 @@ class Booking extends Component {
           ];
 
     let allRes = false,
-        allEvents = false;
+        allEvents = false,
+        index = 0;
 
     let activeBlock = 'success';
     for(let i = 0; i < blocks.length; i++) {
       if (blocks[i].flag === false) {
         activeBlock = blocks[i].name;
+        index = i;
         break;
       }
     }
@@ -198,7 +219,7 @@ class Booking extends Component {
     if (activeBlock === 'success') allRes = true;
 
     return (
-      <div className='booking'>
+      <div className={'booking' + ((activeBlock === 'form') ? ' booking--form' : '')}>
         { (!allEvents) && <Switch blocks={blocks} changeOrders={this.changeOrders} /> }
         <div className='booking__content-wrap'>
           { <InfoBox data={dataInfo} allRes={allRes} /> }
@@ -214,7 +235,7 @@ class Booking extends Component {
               />
           }
           { (activeBlock === 'success') && <Success data={dataInfo} />}
-
+          { (index !== 0 && index !== blocks.length - 1) && <Back changeBack={this.changeBack} />}
         </div>
         <Status blocks={blocks} />
       </div>
